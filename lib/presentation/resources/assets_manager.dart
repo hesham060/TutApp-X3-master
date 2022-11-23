@@ -17,4 +17,6 @@ class JsonAssets {
   static String error = '$jsonPath/error.json';
   static String loading = '$jsonPath/loading.json';
   static String empty = '$jsonPath/empty.json';
+    static String success = '$jsonPath/success.json';
+
 }

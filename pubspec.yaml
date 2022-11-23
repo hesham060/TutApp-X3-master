@@ -79,6 +79,8 @@ flutter:
     - lib/assests/json/empty.json
     - lib/assests/json/error.json
     - lib/assests/json/loading.json
+    - lib/assests/json/success.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

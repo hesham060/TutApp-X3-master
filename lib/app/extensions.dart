@@ -1,6 +1,7 @@
 import 'package:firstproject/app/constants.dart';
 
-extension nonNullString on String? {         // so we apply extensions with primative variables 
+extension NonNullString on String? {
+  // so we apply extensions with primative variables
   String orEmpty() {
     if (this == null) {
       return Constants.empty;
@@ -10,7 +11,7 @@ extension nonNullString on String? {         // so we apply extensions with prim
   }
 }
 
-extension nonNullInteger on int? {
+extension NonNullInteger on int? {
   int orZero() {
     if (this == null) {
       return Constants.zero;
@@ -19,4 +20,3 @@ extension nonNullInteger on int? {
     }
   }
 }
-

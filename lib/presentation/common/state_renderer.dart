@@ -6,6 +6,7 @@ import 'package:firstproject/presentation/resources/styles_manager.dart';
 import 'package:firstproject/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+
 enum StateRendererType {
   // POPUP STATES (DIALOG)
   popupLoadingState,
@@ -16,8 +17,10 @@ enum StateRendererType {
   fullScreenErrorState,
   fullScreenEmptyState,
   // general
-  contentState
+  contentState,
+  popupSuccess,
 }
+
 class StateRenderer extends StatelessWidget {
   StateRendererType stateRendererType;
   String message;
@@ -68,6 +71,13 @@ class StateRenderer extends StatelessWidget {
         ]);
       case StateRendererType.contentState:
         return Container();
+      case StateRendererType.popupSuccess:
+        return _getItemColumn([
+          _getAnimatedImage(JsonAssets.success),
+          _getMessage(title),
+          _getMessage(message),
+          _getRetryButton(AppString.ok, context),
+        ]);
       default:
         return Container();
     }
@@ -130,6 +140,7 @@ class StateRenderer extends StatelessWidget {
           message,
           style:
               getReglarStyle(color: ColorManager.black, fontSize: FontSize.s18),
+              textAlign: TextAlign.center,
         ),
       ),
     );

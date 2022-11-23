@@ -58,9 +58,19 @@ class EmptyState extends FlowState {
       StateRendererType.fullScreenEmptyState;
 }
 
+class SuccessState extends FlowState {
+  String message;
+  SuccessState(this.message);
+  @override
+  String getMessage() => message;
+
+  @override
+  StateRendererType getstateRendererType() => StateRendererType.popupSuccess;
+}
+
 extension FlowStateExtension on FlowState {
-  Widget getScreenWidget(BuildContext context,
-      Widget contentScreenWidget, Function retryActionFunction) {
+  Widget getScreenWidget(BuildContext context, Widget contentScreenWidget,
+      Function retryActionFunction) {
     switch (runtimeType) {
       case LoadingState:
         {
@@ -103,6 +113,18 @@ extension FlowStateExtension on FlowState {
           dismissDialog(context);
           return contentScreenWidget;
         }
+      case SuccessState:
+        {
+          // to remove loading screen 
+          dismissDialog(context);
+          // to show pop up sucess 
+          showPopup(
+              context, StateRendererType.popupSuccess, getMessage());
+              // back to content widget 
+
+               return contentScreenWidget;
+        }
+
       default:
         {
           dismissDialog(context);
@@ -111,26 +133,24 @@ extension FlowStateExtension on FlowState {
     }
   }
 
-  _isCurrentDialogShowing(BuildContext context)=>ModalRoute.of(context)?.isCurrent!=true;
-  dismissDialog(BuildContext context ){
-
-    if(_isCurrentDialogShowing(context)){
-
-      Navigator.of(context,rootNavigator: true).pop(true);
+  _isCurrentDialogShowing(BuildContext context) =>
+      ModalRoute.of(context)?.isCurrent != true;
+  dismissDialog(BuildContext context) {
+    if (_isCurrentDialogShowing(context)) {
+      Navigator.of(context, rootNavigator: true).pop(true);
     }
   }
 
   showPopup(BuildContext context, StateRendererType stateRendererType,
-      String message) {
-
+      String message,{String title = Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
-          
           stateRendererType: stateRendererType,
           message: message,
           retryActionFunction: () {},
+          title: title,
         ),
       ),
     );

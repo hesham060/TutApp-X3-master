@@ -37,7 +37,4 @@ class Authentication{
 
   
 }
-class forgetpassword{
 
-  
-}

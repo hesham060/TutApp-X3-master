@@ -42,7 +42,7 @@ Future<void> initAppModule() async {
 
   // remote data source//
   instance.registerLazySingleton<RemoteDataSource>(
-      () => RemoreDataSourceImpl(instance()));
+      () => RemoteDataSourceImpl(instance()));
 
   // repository
 

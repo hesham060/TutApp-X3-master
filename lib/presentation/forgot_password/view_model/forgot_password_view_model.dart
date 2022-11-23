@@ -36,7 +36,7 @@ class ForgotPasswordViewModel extends BaseViewModel
     },
         // here right it means bring data
         (supportMessage) {
-      inputState.add(ContentState());
+      inputState.add(SuccessState(supportMessage));
     });
   }
 
