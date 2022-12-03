@@ -1,7 +1,7 @@
 import 'package:firstproject/presentation/forgot_password/view/forgot_password_view.dart';
 import 'package:firstproject/presentation/login_view/view/login_view.dart';
-import 'package:firstproject/presentation/main_view/main_view.dart';
-import 'package:firstproject/presentation/register_view/register_view.dart';
+import 'package:firstproject/presentation/main/main_view.dart';
+import 'package:firstproject/presentation/register/register_view/register_view.dart';
 import 'package:firstproject/presentation/resources/string_manager.dart';
 import 'package:firstproject/presentation/splash/splash_view.dart';
 import 'package:firstproject/presentation/store_details_view/store_details.dart';
@@ -32,7 +32,8 @@ class RouteGenerator {
       initLoginModule();
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
-        return MaterialPageRoute(builder: (_) => const ResgisterView());
+      initRegisterModule();
+        return MaterialPageRoute(builder: (_) => const RegisterView());
       case Routes.forgetPasswordRoute:
      initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());

@@ -11,12 +11,12 @@ class ImageAssets {
   static String leftArrowIc = '$imagePath/left_arrow_ic.svg';
   static String hollowCirlceIc = '$imagePath/hollow_cirlce_ic.svg';
   static String solidCircleic = '$imagePath/solid_circle_ic.svg';
+  static String photoCamera = '$imagePath/photo-camera.svg';
 }
 
 class JsonAssets {
   static String error = '$jsonPath/error.json';
   static String loading = '$jsonPath/loading.json';
   static String empty = '$jsonPath/empty.json';
-    static String success = '$jsonPath/success.json';
-
+  static String success = '$jsonPath/success.json';
 }

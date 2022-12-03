@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:firstproject/presentation/main_view/main_view.dart';
 import 'package:firstproject/presentation/resources/assets_manager.dart';
 import 'package:firstproject/presentation/resources/color_manager.dart';
 import 'package:firstproject/presentation/resources/constants_manager.dart';

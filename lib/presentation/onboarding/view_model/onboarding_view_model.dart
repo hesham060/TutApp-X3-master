@@ -8,12 +8,12 @@ class ONBoardingViewModel extends BaseViewModel
     with ONBoardingViewModelInputs, ONBoardingViewModelOutputs {
 // Stream controller outputs
   StreamController _streamController = StreamController<SliderViewObject>();
-  late final List<SliderObject>_list; //  here we are create variable but not used because before it late
+  late final List<SliderObject>
+      _list; //  here we are create variable but not used because before it late
   int _currentIndex = 0;
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _streamController.close(); // to close with this methode
   }
 

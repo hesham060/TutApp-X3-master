@@ -11,8 +11,12 @@ import 'package:firstproject/domain/usecase/login_use_case.dart';
 import 'package:firstproject/presentation/forgot_password/view_model/forgot_password_view_model.dart';
 import 'package:firstproject/presentation/login_view/viewmodel/longin_viewmodel.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../domain/usecase/register_use_case.dart';
+import '../presentation/register/register_viewmodel/register_viewmodel.dart';
 
 final instance = GetIt.instance;
 
@@ -63,5 +67,15 @@ initForgotPasswordModule() {
         () => ForgotPasswordUseCase(instance()));
     instance.registerFactory<ForgotPasswordViewModel>(
         () => ForgotPasswordViewModel(instance()));
+  }
+}
+initRegisterModule() {
+  if (!GetIt.I.isRegistered<RegisterUseCase>()) {
+    instance.registerFactory<RegisterUseCase>(
+        () => RegisterUseCase(instance()));
+    instance.registerFactory<RegisterViewModel>(
+        () => RegisterViewModel(instance()));
+         instance.registerFactory<ImagePicker>(
+        () => ImagePicker());
   }
 }

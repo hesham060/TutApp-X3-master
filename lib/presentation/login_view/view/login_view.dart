@@ -26,7 +26,6 @@ class _LoginViewState extends State<LoginView> {
 
   _bind() {
     // here we start
-
     _viewModel.start();
     _userNameController
         .addListener(() => _viewModel.setUserName(_userNameController.text));

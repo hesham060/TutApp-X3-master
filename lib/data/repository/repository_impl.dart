@@ -11,9 +11,9 @@ import 'package:firstproject/domain/repository/repository.dart';
 
 class RepositoryImpl implements Repository {
   // RepositoryImpl is comming from repository which define right or left
-  final RemoteDataSource _remoreDataSource; // processed to login request
+  final RemoteDataSource _remoteDataSource; // processed to login request
   final NetwokInfo _netwokInfo; // this is resposable for checking connection
-  RepositoryImpl(this._remoreDataSource, this._netwokInfo);
+  RepositoryImpl(this._remoteDataSource, this._netwokInfo);
   @override
   Future<Either<Failure, Authentication>> login(
       LoginRequest loginRequest) async {
@@ -21,7 +21,7 @@ class RepositoryImpl implements Repository {
       // its connected , so its safe to call from api
 
       try {
-        final response = await _remoreDataSource.login(loginRequest);
+        final response = await _remoteDataSource.login(loginRequest);
         if (response.status == ApiInternalStatus.success) {
           // sucess
           // return either right
@@ -53,7 +53,7 @@ class RepositoryImpl implements Repository {
     if (await _netwokInfo.isConnected) {
       try {
         // its safe call
-        final response = await _remoreDataSource.forgotPassword(email);
+        final response = await _remoteDataSource.forgotPassword(email);
 
         if (response.status == ApiInternalStatus.success) {
           // sucess
@@ -73,6 +73,40 @@ class RepositoryImpl implements Repository {
     } else {
       return left(
         DataSource.NO_INTERNET_CONNECTION.getFailure(),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, Authentication>> register(
+      RegisterRequest registerRequest) async {
+    if (await _netwokInfo.isConnected) {
+      // its connected , so its safe to call from api
+
+      try {
+        final response = await _remoteDataSource.register(registerRequest);
+        if (response.status == ApiInternalStatus.success) {
+          // sucess
+          // return either right
+          // return data
+          return right(response.toDomain());
+        } else {
+          // failure --  return  business error coming from api
+          // return either left
+          return left(
+            Failure(ApiInternalStatus.failure,
+                response.message ?? ResponseMessage.DEFAULT),
+          );
+        }
+      } catch (error) {
+        return left(ErrorHandler.handler(error).failure);
+      }
+    } else {
+      // return internet connection error
+      // return either left
+      return left(
+        Failure(Responsecode.NO_INTERNET_CONNECTION,
+            ResponseMessage.NO_INTERNET_CONNECTION),
       );
     }
   }

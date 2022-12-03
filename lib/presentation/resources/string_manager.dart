@@ -22,10 +22,20 @@ class AppString {
   static const buttonTitle = "";
   static const retryAgain = "retry again";
   static const ok = "ok";
- static const String emailHint = 'Email';
-  static const String invalidEmail = "Invalid Email";
+  static const String emailHint = 'Email';
+  static const String invalidEmail = "Format email is wrong ";
   static const String resetPassword = "Reset Password";
-    static const String success = "success";
-
+  static const String success = "success";
+  static const String userNameInvalid = "static const String success ";
+  static const String mobileNumberInvalid =
+      " mobile number should at least 10 digits";
+  static const String passwordInvalid = " password should at least 6 digits";
+  static const String register = "register ";
+  static const String alreadyHaveAnAccount = "already have an account? login ";
+  static const String mobileNumber = "mobileNumber ";
+  static const String profilePicture = "profilePicture ";
+  static const String userName = "User Name ";
+  static const String photoGallery = "photo from gallery";
+    static const String photoCamera = "photo from camera";
 
 }

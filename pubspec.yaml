@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
+  country_code_picker: ^2.0.2
   flutter:
     sdk: flutter
   flutter_rating_bar: ^4.0.0
@@ -45,6 +46,7 @@ dependencies:
   retrofit: ^3.0.1+1
   retrofit_generator: ^4.1.0+1
   shared_preferences: ^2.0.15
+  image_picker: ^0.8.6
 dev_dependencies:
   build_runner: ^2.2.1
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -76,11 +78,11 @@ flutter:
     - lib/assests/images/left_arrow_ic.svg
     - lib/assests/images/hollow_cirlce_ic.svg
     - lib/assests/images/solid_circle_ic.svg
+    - lib/assests/images/photo-camera.svg
     - lib/assests/json/empty.json
     - lib/assests/json/error.json
     - lib/assests/json/loading.json
     - lib/assests/json/success.json
-
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
