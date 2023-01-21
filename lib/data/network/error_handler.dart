@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:firstproject/data/network/failure.dart';
 
+import '../../presentation/resources/string_manager.dart';
+
 class ErrorHandler implements Exception {
   late Failure failure;
 
@@ -123,23 +125,29 @@ class Responsecode {
 }
 
 class ResponseMessage {
-  static const String SUCCESS = "Success";
-  static const String NO_CONTENT = "Success";
-  static const String BAD_REQUEST = "Bad request, try again later";
-  static const String FORBIDDEN = "Forbidden request, try again later ";
-  static const String UNAUTORISED = "user not authorized , try again later ";
-  static const String NOT_FOUND = "Not Found , try again later ";
-  static const String INTERNAL_SERVER_ERROR = "Some thing went wrong";
-// local status code
-  static const String CONNECT_TIMEOUT = "time out later, try again later ";
-  static const String CANCEL = "Request was cancelled, try again later ";
-  static const String RECIEVE_TIMEOUT = "Time out error, try again later";
-  static const String SEND_TIMEOUT = "Time out error, try again later";
-  static const String CACHE_ERROR = "cache error, try again later ";
-  static const String NO_INTERNET_CONNECTION = "Please check your connection";
-  static const String DEFAULT = "Something went wrong, try again later";
-}
+  static const String SUCCESS = AppString.success; // success with data
+  static const String NO_CONTENT =
+      AppString.success; // success with no data (no content)
+  static const String BAD_REQUEST =
+      AppString.badRequestError; // failure, API rejected request
+  static const String UNAUTORISED =
+      AppString.unauthorizedError; // failure, user is not authorised
+  static const String FORBIDDEN =
+      AppString.forbiddenError; //  failure, API rejected request
+  static const String INTERNAL_SERVER_ERROR =
+      AppString.internalServerError; // failure, crash in server side
+  static const String NOT_FOUND =
+      AppString.notFoundError; // failure, crash in server side
 
+  // local status code
+  static const String CONNECT_TIMEOUT = AppString.timeoutError;
+  static const String CANCEL = AppString.defaultError;
+  static const String RECIEVE_TIMEOUT = AppString.timeoutError;
+  static const String SEND_TIMEOUT = AppString.timeoutError;
+  static const String CACHE_ERROR = AppString.cacheError;
+  static const String NO_INTERNET_CONNECTION = AppString.noInternetError;
+  static const String DEFAULT = AppString.defaultError;
+}
 
 // this class api deal with the message which will come 
 class ApiInternalStatus{

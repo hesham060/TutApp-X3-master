@@ -54,9 +54,13 @@ ThemeData getApplicationTheme() {
 
     // text theme
     textTheme: TextTheme(
+      titleSmall: getReglarStyle(
+        color: ColorManager.white,
+        fontSize: FontSize.s10,
+      ),
       bodyMedium: getMeduimStyle(
         color: ColorManager.lightGrey,
-        fontSize: FontSize.s14,
+        fontSize: FontSize.s12,
       ),
       bodyLarge: getReglarStyle(
         color: ColorManager.grey1,
@@ -66,10 +70,14 @@ ThemeData getApplicationTheme() {
       ),
       headlineLarge: getSemiBoldStyle(
           color: ColorManager.darkGrey, fontSize: FontSize.s16),
+      titleMedium:
+          getMeduimStyle(color: ColorManager.primary, fontSize: FontSize.s16),
       displayLarge: getSemiBoldStyle(
           color: ColorManager.darkGrey, fontSize: FontSize.s16),
       headlineMedium:
           getReglarStyle(color: ColorManager.darkGrey, fontSize: FontSize.s14),
+      labelSmall:
+          getBoldStyle(color: ColorManager.primary, fontSize: FontSize.s12),
     ),
     // input Decoration theme
 
@@ -91,14 +99,14 @@ ThemeData getApplicationTheme() {
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.grey,
-          width: AppSize.s2,
+          width: AppSize.s1_5,
         ),
         borderRadius: BorderRadius.circular(AppSize.s8),
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
           color: ColorManager.primary,
-          width: AppSize.s2,
+          width: AppSize.s1_5,
         ),
         borderRadius: BorderRadius.circular(AppSize.s8),
       ),

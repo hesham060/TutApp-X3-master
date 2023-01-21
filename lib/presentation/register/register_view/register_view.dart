@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:firstproject/app/constants.dart';
+import 'package:firstproject/app/shared_prefs.dart';
+import 'package:firstproject/presentation/resources/routes_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -26,6 +29,7 @@ class _RegisterViewState extends State<RegisterView> {
   final ImagePicker _imagePicker = instance<ImagePicker>();
 
   final _formKey = GlobalKey<FormState>();
+  AppPrefreneces _appPrefreneces=instance<AppPrefreneces>();
 
   final TextEditingController _userNameEditingController =
       TextEditingController();
@@ -50,6 +54,17 @@ class _RegisterViewState extends State<RegisterView> {
 
     _mobileNumberEditingController.addListener(() {
       _viewModel.setMobileNumber(_mobileNumberEditingController.text);
+
+      _viewModel.isUserRegisteredInSuccessfullyStreamController.stream
+          .listen((isLoggedIn) {
+        if (isLoggedIn) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+
+            _appPrefreneces.setUserLoggedIn();
+            Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+          });
+        }
+      });
     });
   }
 
@@ -107,8 +122,8 @@ class _RegisterViewState extends State<RegisterView> {
                           keyboardType: TextInputType.emailAddress,
                           controller: _userNameEditingController,
                           decoration: InputDecoration(
-                              hintText: AppString.userName,
-                              labelText: AppString.userName,
+                              hintText: AppString.username,
+                              labelText: AppString.username,
                               errorText: snapshot.data),
                         );
                       }),
@@ -128,7 +143,7 @@ class _RegisterViewState extends State<RegisterView> {
                               onChanged: (country) {
                                 // update view model with code
                                 _viewModel.setCountryCode(
-                                    country.code ?? Constants.token);
+                                    country.dialCode ?? Constants.token);
                               },
                               initialSelection: '+02',
                               favorite: const ['+39', 'FR', "+966"],
@@ -203,7 +218,8 @@ class _RegisterViewState extends State<RegisterView> {
                   child: Container(
                     height: AppSize.s40,
                     decoration: BoxDecoration(
-                      borderRadius:const BorderRadius.all(Radius.circular(AppSize.s8)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(AppSize.s8)),
                         border: Border.all(color: ColorManager.grey)),
                     child: GestureDetector(
                       child: _getMediaWidget(),
@@ -244,7 +260,7 @@ class _RegisterViewState extends State<RegisterView> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(AppString.alreadyHaveAnAccount,
+                    child: Text(AppString.alreadyHaveAccount,
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
                 ),
@@ -270,7 +286,7 @@ class _RegisterViewState extends State<RegisterView> {
                     Navigator.of(context).pop();
                   },
                 ),
-                 ListTile(
+                ListTile(
                   trailing: const Icon(Icons.arrow_forward),
                   leading: const Icon(Icons.camera_alt_outlined),
                   title: const Text(AppString.photoCamera),
@@ -290,8 +306,8 @@ class _RegisterViewState extends State<RegisterView> {
     _viewModel.setProfilePicture(File(image?.path ?? ""));
   }
 
-  _imageFromCamera()async {
-       var image = await _imagePicker.pickImage(source: ImageSource.camera);
+  _imageFromCamera() async {
+    var image = await _imagePicker.pickImage(source: ImageSource.camera);
     _viewModel.setProfilePicture(File(image?.path ?? ""));
   }
 
@@ -301,7 +317,9 @@ class _RegisterViewState extends State<RegisterView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Flexible(child: Text(AppString.profilePicture)),
+          const Flexible(
+            child: Text(AppString.profilePicture),
+          ),
           Flexible(
               child: StreamBuilder<File>(
             stream: _viewModel.outputProfilePicture,
@@ -309,7 +327,9 @@ class _RegisterViewState extends State<RegisterView> {
               return _imagePicketByUser(snapshot.data);
             },
           )),
-          Flexible(child: SvgPicture.asset(ImageAssets.photoCamera))
+          Flexible(
+            child: SvgPicture.asset(ImageAssets.photoCamera),
+          ),
         ],
       ),
     );

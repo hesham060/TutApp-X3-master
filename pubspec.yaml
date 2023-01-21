@@ -28,16 +28,20 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   analyzer: ^5.0.0
+  carousel_slider: ^4.2.1
+  country_code_picker: ^2.0.2
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dio: ^4.0.6
-  country_code_picker: ^2.0.2
+  easy_localization: ^3.0.1
   flutter:
     sdk: flutter
+  flutter_phoenix: ^1.1.0
   flutter_rating_bar: ^4.0.0
   flutter_svg: ^1.0.3
   freezed: ^2.1.1
   get_it: ^7.2.0
+  image_picker: ^0.8.6
   internet_connection_checker: ^1.0.0+1
   json_annotation: ^4.7.0
   json_serializable: ^6.4.0
@@ -45,8 +49,8 @@ dependencies:
   pretty_dio_logger: ^1.2.0-beta-1
   retrofit: ^3.0.1+1
   retrofit_generator: ^4.1.0+1
+  rxdart: ^0.27.7
   shared_preferences: ^2.0.15
-  image_picker: ^0.8.6
 dev_dependencies:
   build_runner: ^2.2.1
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -79,10 +83,17 @@ flutter:
     - lib/assests/images/hollow_cirlce_ic.svg
     - lib/assests/images/solid_circle_ic.svg
     - lib/assests/images/photo-camera.svg
+    - lib/assests/images/contact_us_ic.svg
+    - lib/assests/images/invite_friends_ic.svg
+    - lib/assests/images/logout_ic.svg
+    - lib/assests/images/right_arrow_settings_ic.svg
     - lib/assests/json/empty.json
     - lib/assests/json/error.json
     - lib/assests/json/loading.json
     - lib/assests/json/success.json
+    - lib/assests/translations/ar_SA.json
+    - lib/assests/translations/en_US.json
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

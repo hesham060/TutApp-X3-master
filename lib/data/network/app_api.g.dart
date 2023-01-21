@@ -79,7 +79,7 @@ class _AppServiceClients implements AppServiceClients {
     mobileNumber,
     email,
     password,
-    profilePic,
+    profilePicture,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -90,7 +90,7 @@ class _AppServiceClients implements AppServiceClients {
       'mobile_number': mobileNumber,
       'email': email,
       'password': password,
-      'profile_pic': profilePic,
+      'profile_picture': profilePicture,
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AuthenticationResponse>(Options(
@@ -106,6 +106,52 @@ class _AppServiceClients implements AppServiceClients {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AuthenticationResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<HomeResponse> getHomeData() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<HomeResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/home',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = HomeResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<StoreDetailsResponse> getStoreDetails() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<StoreDetailsResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/storeDetails/1',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = StoreDetailsResponse.fromJson(_result.data!);
     return value;
   }
 

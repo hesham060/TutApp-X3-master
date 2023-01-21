@@ -95,11 +95,11 @@ class _LoginViewState extends State<LoginView> {
                       keyboardType: TextInputType.text,
                       controller: _userNameController,
                       decoration: InputDecoration(
-                        hintText: AppString.userNameError,
-                        labelText: AppString.userNameError,
+                        hintText: AppString.usernameError,
+                        labelText: AppString.usernameError,
                         errorText: (snapshot.data ?? true)
                             ? null
-                            : AppString.userNameError,
+                            : AppString.usernameError,
                       ),
                     );
                   },

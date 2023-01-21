@@ -4,7 +4,7 @@ import 'package:firstproject/presentation/main/main_view.dart';
 import 'package:firstproject/presentation/register/register_view/register_view.dart';
 import 'package:firstproject/presentation/resources/string_manager.dart';
 import 'package:firstproject/presentation/splash/splash_view.dart';
-import 'package:firstproject/presentation/store_details_view/store_details.dart';
+import 'package:firstproject/presentation/store_details_view/store_details_view/store_details.dart';
 import 'package:flutter/material.dart';
 
 import '../../app/di.dart';
@@ -38,8 +38,10 @@ class RouteGenerator {
      initForgotPasswordModule();
         return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
       case Routes.mainRoute:
+      initHomeModule();
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.storeDetailsRoute:
+      initRegisterModule();
         return MaterialPageRoute(builder: (_) => const StoreDetailsView());
 
       default:
@@ -53,7 +55,8 @@ class RouteGenerator {
               appBar: AppBar(
                 title: const Text(AppString.noRouteFound),
               ),
-              body: const Center(child: Text(AppString.noRouteFound)),
+              body: const Center(child: Text(AppString.noRouteFound),
+              ),
             ));
   }
 }
